@@ -1,0 +1,29 @@
+<div class="card m-3">
+    <div class="card-body">
+        <div class="card m-3">
+            <div class="card-body">
+                <ng-container #container></ng-container>
+                <ng-template #template let-formData="formData" let-formKey="formKey">
+                    <div class="form-row">
+                        <div id="formKey" class="form-group col">{{formKey}}</div>
+                        <div class="form-group col">
+                            <input type="text" [(ngModel)]="formData.name" class="form-control" />
+                        </div>
+                        <div class="form-group col">
+                            <input type="checkbox" [id]="formKey" class="filled-in" [(ngModel)]="formData.isItext" />
+                            <label class="truncate" [title]="'IText'" [for]="formKey">{{'Itext'}}</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="text" [(ngModel)]="formData.iText" class="form-control" [disabled]="!formData.isItext"/>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-primary mr-1" (click)="onSubmit()">Save</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        </div>
+    </div>
+</div>
