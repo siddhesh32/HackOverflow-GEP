@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+// tslint:disable-next-line: quotemark
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';

@@ -6,7 +6,6 @@ import { DetailService } from './detail.service';
 export class DetailResolver implements Resolve<any> {
     constructor(public detailService: DetailService){}
     resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any {
-        debugger;
         let id = 0;
         if(localStorage.getItem('docid')){
             id = parseInt(localStorage.getItem('docid'))

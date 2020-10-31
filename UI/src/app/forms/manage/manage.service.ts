@@ -6,7 +6,6 @@ import { ConfigService } from '../shared/configService.service';
 export class ManageService implements OnDestroy {
     constructor(public configService: ConfigService){}
     getData(){
-        debugger
         return of(this.configService.getManageData());
         // return of(
         //     [

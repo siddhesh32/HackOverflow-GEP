@@ -152,6 +152,9 @@
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"
             ],
+            "exclude": [
+              "**/node_modules/**"
+            ],
             "typeCheck": true,
             "exclude": []
           }

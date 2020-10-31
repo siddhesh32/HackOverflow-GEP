@@ -11,8 +11,7 @@ export class ConfigService implements OnDestroy {
         return this.config;
     }
     setManageData(data){
-        let newData: any = {}
-        debugger
+        let newData: any = {};
         if(data && Object.keys(data) && Object.keys(data).length > 0 && data.config) {
             Object.keys(data.config).forEach((key: any)=> {
                 newData[data.config[key]] = data.data[key];
