@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SmartFieldMapper.BusinessLayer</AssemblyName>
+    <RootNamespace>SmartFieldMapper.BusinessLayer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomFieldMapper.DataAccessLayer\SmartFieldMapper.DataAccessLayer.csproj" />
+  </ItemGroup>
+
+</Project>
