@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DetailService } from './detail.service';
 @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'app-detail',
     templateUrl: 'detail.component.html',
     styleUrls: ['./detail.component.scss'],
