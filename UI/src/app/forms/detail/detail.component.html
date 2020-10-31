@@ -7,7 +7,10 @@
                     <div class="form-group col">
                         <div class="detail-label">
                             <label>{{config.documentType.name}}</label>
-                            <span class="tooltiptext">{{config.documentType.iText}}</span>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.documentType.iText}}</span>
+                            </span>
                         </div>
                         <select formControlName="documentType" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.documentType.errors }">
@@ -22,7 +25,10 @@
                     <div class="form-group col-5">
                         <div class="detail-label">
                             <label>{{config.documentName.name}}</label>
-                            <span class="tooltiptext">{{config.documentName.iText}}</span>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.documentName.iText}}</span>
+                            </span>
                         </div>
                         <input type="text" formControlName="documentName" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.documentName.errors }" />
@@ -33,7 +39,10 @@
                     <div class="form-group col-5">
                         <div class="detail-label">
                             <label>{{config.itemName.name}}</label>
-                            <span class="tooltiptext">{{config.itemName.iText}}</span>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.itemName.iText}}</span>
+                            </span>
                         </div>
                         <input type="text" formControlName="itemName" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }" />
@@ -45,7 +54,10 @@
                 <div class="form-group">
                     <div class="detail-label">
                         <label>{{config.category.name}}</label>
-                        <span class="tooltiptext">{{config.category.iText}}</span>
+                        <span class="detail-label-icon">
+                            <i class="fa fa-info-circle"></i>
+                            <span class="tooltiptext">{{config.category.iText}}</span>
+                        </span>
                     </div>
                     <select formControlName="category" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
@@ -63,7 +75,10 @@
                     <div class="form-group col">
                         <div class="detail-label">
                             <label>{{config.businessUnit.name}}</label>
-                            <span class="tooltiptext">{{config.businessUnit.iText}}</span>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.businessUnit.iText}}</span>
+                            </span>
                         </div>
                         <select formControlName="businessUnit" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.businessUnit.errors }">
@@ -80,7 +95,10 @@
                     <div class="form-group col">
                         <div class="detail-label">
                             <label>{{config.region.name}}</label>
-                            <span class="tooltiptext">{{config.region.iText}}</span>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.region.iText}}</span>
+                            </span>
                         </div>
                         <select formControlName="region" class="form-control"
                             [ngClass]="{ 'is-invalid': submitted && f.region.errors }">
