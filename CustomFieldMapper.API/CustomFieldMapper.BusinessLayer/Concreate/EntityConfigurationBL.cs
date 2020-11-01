@@ -11,12 +11,14 @@ namespace SmartFieldMapper.BusinessLayer.Concreate
 {
     public class EntityConfigurationBL : IEntityConfigurationBL
     {
-        private const string PARTITION_KEY = "Contract";
+        private const string PARTITION_KEY = "CONTRACT";
         private const string CONTAINER_NAME = "EntityConfig";
-        ICosmosDBService _cosmosDBService;
-        public EntityConfigurationBL(ICosmosDBService cosmosDBService)
+        private readonly ICosmosDBService _cosmosDBService;
+        private readonly IApiHeaders _apiHeaders;
+        public EntityConfigurationBL(ICosmosDBService cosmosDBService, IApiHeaders apiHeaders)
         {
             _cosmosDBService = cosmosDBService;
+            _apiHeaders = apiHeaders;
         }
         public async Task<IEnumerable<EntityConfig>> GetEntityConfigList()
         {
@@ -26,12 +28,22 @@ namespace SmartFieldMapper.BusinessLayer.Concreate
 
         public async Task SaveEntityConfig(EntityConfig entityConfig)
         {
-           await _cosmosDBService.AddItemAsync(entityConfig, CONTAINER_NAME);
+            if (string.IsNullOrEmpty(entityConfig.Id))
+            {
+                entityConfig.Id = Guid.NewGuid().ToString();
+                entityConfig.PartitionKey = PARTITION_KEY +"-"+ _apiHeaders.BPC.ToString();
+                await _cosmosDBService.AddItemAsync(entityConfig, CONTAINER_NAME);
+            }
+            else
+            {
+                await _cosmosDBService.UpdateItemAsync(entityConfig.Id, entityConfig, CONTAINER_NAME, PARTITION_KEY + "-" + _apiHeaders.BPC.ToString());
+            }
+           
         }
 
         public async Task UpdateEntityConfig(UpdateEntityConfigRequest updateEntityConfigRequest)
         {
-           await _cosmosDBService.UpdateItemAsync(updateEntityConfigRequest.Id, updateEntityConfigRequest.entityConfig, CONTAINER_NAME, PARTITION_KEY);
+           await _cosmosDBService.UpdateItemAsync(updateEntityConfigRequest.Id, updateEntityConfigRequest.entityConfig, CONTAINER_NAME, PARTITION_KEY + "-" + _apiHeaders.BPC.ToString());
         }
     }
 }

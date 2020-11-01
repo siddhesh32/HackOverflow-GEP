@@ -51,8 +51,8 @@ namespace SmartFieldMapper.WebAPI.Controllers
         public async Task<ActionResult> GetAllDocuments()
         {
            return Ok(await _documentBL.GetAllDocuments());
-           
         }
+        
         /// <summary>
         /// Get All Documents
         /// </summary>
@@ -62,7 +62,7 @@ namespace SmartFieldMapper.WebAPI.Controllers
         public async Task<ActionResult> GetDocument(string Id)
         {
            Document document = await _documentBL.GetDocumentDataById(Id);
-            FieldConfig fieldConfig = await _fieldConfigBL.GetFieldConfiguration("FieldConfig-" + _apiHeaders.BPC.ToString()); ;
+            FieldConfig fieldConfig = await _fieldConfigBL.GetFieldConfiguration("FieldConfig-" + _apiHeaders.BPC.ToString());
            DocumentViewModel documentViewModel = new DocumentViewModel()
            {
                Data = document,

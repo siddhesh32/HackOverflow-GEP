@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ManageService } from './manage.service';
 
 @Component({
@@ -13,24 +13,29 @@ export class ManageComponent implements OnInit {
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
   constructor(
     public route: ActivatedRoute,
-    public manageService: ManageService
+    public manageService: ManageService,
+    public router :Router
   ) { }
   ngOnInit() {
+    debugger;
     this.route.data.subscribe((data: any) => {
       this.bindData(data.manage);
     })
   }
   bindData(data) {
 
+    debugger;
     this.destroyContainer();
     let manageCards = [];
     if (data && data.length > 0) {
       data.forEach((_data: any) => {
         let manageData = [];
-        if (_data && Object.keys(_data) && Object.keys(_data).length > 0) {
-          Object.keys(_data).forEach((key: string) => {
-            let rowData = [key, _data[key]]
-            manageData.push(rowData);
+        if (_data && Object.values(_data) && Object.values(_data).length > 0) {
+          Object.values(_data).forEach((item:any) => {
+            if(item.displayName!="partitionKey"){
+              let rowData = [item.displayName, item.value]
+              manageData.push(rowData);
+            }
           });
           manageCards.push(manageData);
         }
@@ -38,10 +43,19 @@ export class ManageComponent implements OnInit {
       });
     }
   }
+
   loadContainer(data) {
     this.container.createEmbeddedView(this.template, { data });
   }
   destroyContainer() {
     (this.container && this.container.length > 0) && (this.container.clear())
   }
+  redirectToView(data){
+    var colData= data.find(item => item[0]=="id")
+    if(colData != undefined){
+    var docId = colData[1];
+    localStorage.setItem('docid',docId);
+    this.router.navigateByUrl("/pages/create");
+    }
+   }
 }

@@ -21,7 +21,9 @@ export class DetailComponent implements OnInit, OnDestroy {
     submitted = false;
     config: any;
     ngOnInit() {
+      this.setDefault();
         this.route.data.subscribe((data: any) => {
+          debugger;
             this.config = data.detail.config;
             this.registerForm = this.formBuilder.group({
                 documentType: [data.detail.data.documentType, Validators.required],
@@ -30,10 +32,10 @@ export class DetailComponent implements OnInit, OnDestroy {
                 category: [data.detail.data.category, [Validators.required]],
                 businessUnit: [data.detail.data.businessUnit, [Validators.required]],
                 region: [data.detail.data.region, Validators.required],
-            }
+                id:[data.detail.data.id]
+               }
             );
         });
-        this.setDefault();
     }
 
     setDefault(){
@@ -44,6 +46,7 @@ export class DetailComponent implements OnInit, OnDestroy {
             category: ['', [Validators.required]],
             businessUnit: ['', [Validators.required]],
             region: ['', Validators.required],
+            id:['']
         }
         );
     }

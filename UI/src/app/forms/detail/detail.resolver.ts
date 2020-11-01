@@ -6,10 +6,15 @@ import { DetailService } from './detail.service';
 export class DetailResolver implements Resolve<any> {
     constructor(public detailService: DetailService){}
     resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any {
-        let id = 0;
+        var id:string = "";
         if(localStorage.getItem('docid')){
-            id = parseInt(localStorage.getItem('docid'))
+            id = localStorage.getItem('docid');
         }
+        else{
+          id="";
+        }
+        debugger;
         return this.detailService.getConfigData(id);
+
     }
 }

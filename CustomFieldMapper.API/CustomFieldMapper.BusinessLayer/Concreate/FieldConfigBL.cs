@@ -28,9 +28,17 @@ namespace SmartFieldMapper.BusinessLayer.Concreate
 
         public void SaveFieldConfiguration(FieldConfig fieldConfig)
         {
-            fieldConfig.PartitionKey = PARTITION_KEY;
-            fieldConfig.Id = "FieldConfig-"+_apiHeaders.BPC;
-            _cosmosDBService.AddItemAsync(fieldConfig, CONTAINER_NAME);
+            if (string.IsNullOrEmpty(fieldConfig.Id))
+            {
+                fieldConfig.PartitionKey = PARTITION_KEY;
+                fieldConfig.Id = "FieldConfig-" + _apiHeaders.BPC;
+                _cosmosDBService.AddItemAsync(fieldConfig, CONTAINER_NAME);
+            }
+            else
+            {
+                _cosmosDBService.UpdateItemAsync(fieldConfig.Id, fieldConfig, CONTAINER_NAME, PARTITION_KEY);
+            }
+            
         }
 
         public void UpdateFieldConfiguration(UpdateFieldConfigRequest updateFieldConfigRequest)

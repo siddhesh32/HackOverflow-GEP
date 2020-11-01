@@ -7,9 +7,9 @@
                     <div class="form-group col">
                         <div class="detail-label">
                             <label>{{config.documentType.name}}</label>
-                            <span class="detail-label-icon">
+                            <span class="detail-label-icon" *ngIf="config.documentType.isItext">
                                 <i class="fa fa-info-circle"></i>
-                                <span class="tooltiptext">{{config.documentType.iText}}</span>
+                                <span class="tooltiptext" >{{config.documentType.iText}}</span>
                             </span>
                         </div>
                         <select formControlName="documentType" class="form-control"
@@ -25,7 +25,7 @@
                     <div class="form-group col-5">
                         <div class="detail-label">
                             <label>{{config.documentName.name}}</label>
-                            <span class="detail-label-icon">
+                            <span class="detail-label-icon" *ngIf="config.documentName.isItext">
                                 <i class="fa fa-info-circle"></i>
                                 <span class="tooltiptext">{{config.documentName.iText}}</span>
                             </span>
@@ -39,7 +39,7 @@
                     <div class="form-group col-5">
                         <div class="detail-label">
                             <label>{{config.itemName.name}}</label>
-                            <span class="detail-label-icon">
+                            <span class="detail-label-icon" *ngIf="config.itemName.isItext">
                                 <i class="fa fa-info-circle"></i>
                                 <span class="tooltiptext">{{config.itemName.iText}}</span>
                             </span>
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <div class="detail-label">
                         <label>{{config.category.name}}</label>
-                        <span class="detail-label-icon">
+                        <span class="detail-label-icon" *ngIf="config.category.isItext">
                             <i class="fa fa-info-circle"></i>
                             <span class="tooltiptext">{{config.category.iText}}</span>
                         </span>
@@ -75,7 +75,7 @@
                     <div class="form-group col">
                         <div class="detail-label">
                             <label>{{config.businessUnit.name}}</label>
-                            <span class="detail-label-icon">
+                            <span class="detail-label-icon" *ngIf="config.businessUnit.isItext">
                                 <i class="fa fa-info-circle"></i>
                                 <span class="tooltiptext">{{config.businessUnit.iText}}</span>
                             </span>
@@ -95,7 +95,7 @@
                     <div class="form-group col">
                         <div class="detail-label">
                             <label>{{config.region.name}}</label>
-                            <span class="detail-label-icon">
+                            <span class="detail-label-icon" *ngIf="config.region.isItext">
                                 <i class="fa fa-info-circle"></i>
                                 <span class="tooltiptext">{{config.region.iText}}</span>
                             </span>

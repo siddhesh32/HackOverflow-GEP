@@ -8,5 +8,6 @@ namespace SmartFieldMapper.BusinessLayer.Concreate
     public class ApiHeaders:IApiHeaders
     {
         public long BPC { get; set; }
+        public string DocumentType { get ; set ; }
     }
 }

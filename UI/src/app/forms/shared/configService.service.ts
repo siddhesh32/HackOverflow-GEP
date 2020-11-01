@@ -1,14 +1,17 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { BaseService } from './base.service';
 
 @Injectable({providedIn: 'root'})
 export class ConfigService implements OnDestroy {
+
     config
     manageData: any[] = [];
     saveConfig(config){
-        this.config = config;
+      debugger;
+        this.baseservice.postData("http://localhost:59010/api/SaveFieldConfiguration",config,{}).subscribe();
     }
     getConfig(){
-        return this.config;
+        return this.baseservice.getData("http://localhost:59010/api/GetFieldConfiguration?Id=FieldConfig-0",{});
     }
     setManageData(data){
         let newData: any = {};
@@ -21,8 +24,11 @@ export class ConfigService implements OnDestroy {
         this.manageData.push(newData);
     }
     getManageData(){
-        return this.manageData;
+        return this.baseservice.getData("http://localhost:59010/api/GetAllDocuments",{});
     }
-    constructor(){}
+
+    constructor(public baseservice: BaseService) {
+
+    }
     ngOnDestroy(){}
 }

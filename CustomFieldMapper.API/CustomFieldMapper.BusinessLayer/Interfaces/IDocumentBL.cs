@@ -12,7 +12,7 @@ namespace SmartFieldMapper.BusinessLayer.Interfaces
         Task<Document> GetDocumentDataById(string Id);
         Task SaveDocumentData(Document form);
         Task UpdateDocumentData(Document document);
-        Task<IEnumerable<Document>> GetAllDocuments();
+        Task<List<ManageDocumentVIewModel>> GetAllDocuments();
         
     }
 }
