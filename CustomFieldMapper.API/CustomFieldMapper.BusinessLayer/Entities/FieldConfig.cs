@@ -1,25 +1,30 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace SmartFieldMapper.BusinessLayer.Entities
 {
-    public class FieldConfig
+    public class FieldConfig: BaseCosmosDBEntity
     {
+        public FieldConfig()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
         [JsonProperty(PropertyName = "documentType")]
-        public FieldConfig DocumentType { get; set; }
+        public ColumnConfig DocumentType { get; set; }
 
         [JsonProperty(PropertyName = "documentName")]
-        public FieldConfig DocumentName { get; set; }
+        public ColumnConfig DocumentName { get; set; }
 
         [JsonProperty(PropertyName = "itemName")]
-        public FieldConfig ItemName { get; set; }
+        public ColumnConfig ItemName { get; set; }
 
         [JsonProperty(PropertyName = "category")]
-        public FieldConfig Category { get; set; }
+        public ColumnConfig Category { get; set; }
 
         [JsonProperty(PropertyName = "businessUnit")]
-        public FieldConfig BusinessUnit { get; set; }
+        public ColumnConfig BusinessUnit { get; set; }
 
         [JsonProperty(PropertyName = "region")]
-        public FieldConfig Region { get; set; }
+        public ColumnConfig Region { get; set; }
     }
 }

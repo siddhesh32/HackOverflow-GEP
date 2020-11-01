@@ -1,4 +1,6 @@
-﻿using SmartFieldMapper.BusinessLayer.Entities;
+﻿using SmartFieldMapper.BusinessLayer.Concreate;
+using SmartFieldMapper.BusinessLayer.Entities;
+using SmartFieldMapper.BusinessLayer.Entities.Request;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +12,6 @@ namespace SmartFieldMapper.BusinessLayer.Interfaces
     {
         Task<IEnumerable<EntityConfig>> GetEntityConfigList();
         Task SaveEntityConfig(EntityConfig entityConfig);
-        Task UpdateEntityConfig(string Id, EntityConfig form);
+        Task UpdateEntityConfig(UpdateEntityConfigRequest updateEntityConfigRequest);
     }
 }

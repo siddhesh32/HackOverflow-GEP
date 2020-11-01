@@ -1,4 +1,5 @@
 ﻿using SmartFieldMapper.BusinessLayer.Entities;
+using SmartFieldMapper.BusinessLayer.Entities.Request;
 using SmartFieldMapper.BusinessLayer.Interfaces;
 using SmartFieldMapper.DataAccessLayer.Interfaces;
 using System;
@@ -10,25 +11,32 @@ namespace SmartFieldMapper.BusinessLayer.Concreate
 {
     public class FieldConfigBL : IFieldConfigBL
     {
+        private const string PARTITION_KEY = "CONTRACT";
+        private const string CONTAINER_NAME = "FieldConfig";
         private readonly ICosmosDBService _cosmosDBService;
-        public FieldConfigBL(ICosmosDBService cosmosDBService)
+        private readonly IApiHeaders _apiHeaders;
+        public FieldConfigBL(ICosmosDBService cosmosDBService,IApiHeaders apiHeaders)
         {
             _cosmosDBService = cosmosDBService;
+            _apiHeaders = apiHeaders;
         }
         public async Task<FieldConfig> GetFieldConfiguration(string Id)
         {
-            FieldConfig fieldConfig = await _cosmosDBService.GetItemAsync<FieldConfig>(Id);
+            FieldConfig fieldConfig = await _cosmosDBService.GetItemAsync<FieldConfig>(Id, CONTAINER_NAME, PARTITION_KEY);
             return fieldConfig;
         }
 
         public void SaveFieldConfiguration(FieldConfig fieldConfig)
         {
-            _cosmosDBService.AddItemAsync(fieldConfig);
+            fieldConfig.PartitionKey = PARTITION_KEY;
+            fieldConfig.Id = "FieldConfig-"+_apiHeaders.BPC;
+            _cosmosDBService.AddItemAsync(fieldConfig, CONTAINER_NAME);
         }
 
-        public void UpdateFieldConfiguration(string Id,FieldConfig fieldConfig)
+        public void UpdateFieldConfiguration(UpdateFieldConfigRequest updateFieldConfigRequest)
         {
-            _cosmosDBService.UpdateItemAsync(Id, fieldConfig);
+            updateFieldConfigRequest.fieldConfig.Id = "FieldConfig" + _apiHeaders.BPC;
+            _cosmosDBService.UpdateItemAsync(updateFieldConfigRequest.Id, updateFieldConfigRequest.fieldConfig, CONTAINER_NAME, PARTITION_KEY);
         }
     }
 }

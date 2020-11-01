@@ -1,7 +1,7 @@
 ﻿
 namespace SmartFieldMapper.BusinessLayer.Entities
 {
-    public class EntityConfig
+    public class EntityConfig: BaseCosmosDBEntity
     {
         public string EntityName { get; set; }
         public string DisplayName { get; set; }

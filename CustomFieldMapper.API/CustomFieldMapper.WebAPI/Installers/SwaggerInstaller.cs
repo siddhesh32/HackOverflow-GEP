@@ -2,15 +2,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SmartFieldMapper.WebAPI.Installers
 {
+    /// <summary>
+    /// Swagger Installer
+    /// </summary>
     public class SwaggerInstaller:IInstaller
     {
+        /// <summary>
+        /// Install Services
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(config =>

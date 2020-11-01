@@ -2,10 +2,14 @@
 
 namespace SmartFieldMapper.BusinessLayer.Entities
 {
-    public class Document
+    public class Document: BaseCosmosDBEntity
     {
+        public Document()
+        {
+            
+        }
         [JsonProperty(PropertyName = "documentType")]
-        public int DocumentType { get; set; }
+        public string DocumentType { get; set; }
 
         [JsonProperty(PropertyName = "documentName")]
         public string DocumentName { get; set; }

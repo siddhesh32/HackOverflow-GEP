@@ -10,5 +10,10 @@ namespace SmartFieldMapper.BusinessLayer
             var entity = Activator.CreateInstance<T>();
             return entity;
         }
+        public static dynamic ToDynamic<T>(T obj)
+        {
+            var entity = Activator.CreateInstance<T>();
+            return entity;
+        }
     }
 }

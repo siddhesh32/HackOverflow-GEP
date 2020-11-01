@@ -1,4 +1,5 @@
 ﻿using SmartFieldMapper.BusinessLayer.Entities;
+using SmartFieldMapper.BusinessLayer.Entities.Request;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +11,7 @@ namespace SmartFieldMapper.BusinessLayer.Interfaces
     {
         Task<Document> GetDocumentDataById(string Id);
         Task SaveDocumentData(Document form);
-        Task UpdateDocumentData(string Id, Document form);
+        Task UpdateDocumentData(Document document);
         Task<IEnumerable<Document>> GetAllDocuments();
         
     }

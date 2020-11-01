@@ -11,24 +11,34 @@ namespace SmartFieldMapper.DataAccessLayer.Concreate
     public class CosmosDBService: ICosmosDBService
     {
         private Container _container;
-        public CosmosDBService(CosmosClient dbClient,string databaseName,string containerName)
-        {
-            this._container = dbClient.GetContainer(databaseName, containerName);
-        }
-        public async Task AddItemAsync<T>(T item)
-        {
-            await this._container.CreateItemAsync<T>(item, new PartitionKey("Id"));
-        }
-        public async Task DeleteItemAsync<T>(string id)
-        {
-            await this._container.DeleteItemAsync<T>(id, new PartitionKey(id));
-        }
 
-        public async Task<T> GetItemAsync<T>(string id)
+        public CosmosClient dbClient { get ; set; }
+        public DatabaseResponse database { get; set; }
+
+        public async Task AddItemAsync<T>(T item,string containerName)
         {
             try
             {
-                ItemResponse<T> response = await this._container.ReadItemAsync<T>(id, new PartitionKey(id));
+                this._container = await database.Database.CreateContainerIfNotExistsAsync(containerName, "/partitionkey");
+                var response = await this._container.CreateItemAsync<T>(item);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        public async Task DeleteItemAsync<T>(string id, string containerName, string partitionKey)
+        {
+            this._container = await database.Database.CreateContainerIfNotExistsAsync(containerName, "/partitionkey");
+            await this._container.DeleteItemAsync<T>(id, new PartitionKey(partitionKey));
+        }
+
+        public async Task<T> GetItemAsync<T>(string id, string containerName, string partitionKey)
+        {
+            try
+            {
+                this._container = await database.Database.CreateContainerIfNotExistsAsync(containerName, "/partitionkey");
+                ItemResponse<T> response = await this._container.ReadItemAsync<T>(id, new PartitionKey(partitionKey));
                 return response.Resource;
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -44,9 +54,9 @@ namespace SmartFieldMapper.DataAccessLayer.Concreate
             }
         }
 
-        public async Task<IEnumerable<T>> GetItemsAsync<T>(string queryString,string databaseId, string containerName)
+        public async Task<IEnumerable<T>> GetItemsAsync<T>(string queryString,string containerName)
         {
-
+            this._container = await database.Database.CreateContainerIfNotExistsAsync(containerName, "/partitionkey");
             var query = this._container.GetItemQueryIterator<dynamic>(new QueryDefinition(queryString));
             List<T> results = new List<T>();
             using (FeedIterator<T> resultSetIterator = _container.GetItemQueryIterator<T>(
@@ -62,10 +72,10 @@ namespace SmartFieldMapper.DataAccessLayer.Concreate
             return results;
         }
 
-        public async Task UpdateItemAsync<T>(string id, T item)
+        public async Task UpdateItemAsync<T>(string id, T item, string containerName,string partitionKey)
         {
-            
-            await this._container.UpsertItemAsync<T>(item, new PartitionKey(id));
+            this._container = await database.Database.CreateContainerIfNotExistsAsync(containerName, "/partitionkey");
+            await this._container.UpsertItemAsync<T>(item, new PartitionKey(partitionKey));
         }
 
     }
