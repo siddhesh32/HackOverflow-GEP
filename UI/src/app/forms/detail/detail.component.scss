@@ -1,0 +1,24 @@
+.form-group {
+  .detail-label {
+    .detail-label-icon {
+      margin-left: 10px;
+      .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #0a6fb5;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+      }
+
+      &:hover .tooltiptext {
+        visibility: visible;
+      }
+    }
+  }
+}

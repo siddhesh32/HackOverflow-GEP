@@ -1,0 +1,17 @@
+<div class="manage-Cards">
+  <ng-container #container></ng-container>
+  <ng-template #template let-data="data">
+    <div class="card manage-card">
+      <table>
+        <tr>
+          <th>Label</th>
+          <th>Data</th>
+        </tr>
+        <tr *ngFor="let row of data; let i = index;">
+          <td *ngFor="let item of row; let i = index;">{{item}}</td>
+        </tr>
+
+      </table>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,124 @@
+<div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="card m-3">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="detail-label">
+                            <label>{{config.documentType.name}}</label>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.documentType.iText}}</span>
+                            </span>
+                        </div>
+                        <select formControlName="documentType" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.documentType.errors }">
+                            <option value=""></option>
+                            <option value="Product">Product</option>
+                            <option value="Service">Service</option>
+                        </select>
+                        <div *ngIf="submitted && f.documentType.errors" class="invalid-feedback">
+                            <div *ngIf="f.documentType.errors.required">Document Type is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <div class="detail-label">
+                            <label>{{config.documentName.name}}</label>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.documentName.iText}}</span>
+                            </span>
+                        </div>
+                        <input type="text" formControlName="documentName" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.documentName.errors }" />
+                        <div *ngIf="submitted && f.documentName.errors" class="invalid-feedback">
+                            <div *ngIf="f.documentName.errors.required">Document Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <div class="detail-label">
+                            <label>{{config.itemName.name}}</label>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.itemName.iText}}</span>
+                            </span>
+                        </div>
+                        <input type="text" formControlName="itemName" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }" />
+                        <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
+                            <div *ngIf="f.itemName.errors.required">Item Name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="detail-label">
+                        <label>{{config.category.name}}</label>
+                        <span class="detail-label-icon">
+                            <i class="fa fa-info-circle"></i>
+                            <span class="tooltiptext">{{config.category.iText}}</span>
+                        </span>
+                    </div>
+                    <select formControlName="category" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                        <option value=""></option>
+                        <option value="Chemicals">Chemicals</option>
+                        <option value="Corporate Services">Corporate Services</option>
+                        <option value="Human Resources Services">Human Resources Services</option>
+                        <option value="Steel">Steel</option>
+                    </select>
+                    <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                        <div *ngIf="f.category.errors.required">Category is required</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="detail-label">
+                            <label>{{config.businessUnit.name}}</label>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.businessUnit.iText}}</span>
+                            </span>
+                        </div>
+                        <select formControlName="businessUnit" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.businessUnit.errors }">
+                            <option value=""></option>
+                            <option value="D30-110">D30-110</option>
+                            <option value="D50-110">D50-110</option>
+                            <option value="SAP-30-200">SAP-30-200</option>
+                            <option value="SAP-50-200">SAP-50-200</option>
+                        </select>
+                        <div *ngIf="submitted && f.businessUnit.errors" class="invalid-feedback">
+                            <div *ngIf="f.businessUnit.errors.required">Business Unit is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <div class="detail-label">
+                            <label>{{config.region.name}}</label>
+                            <span class="detail-label-icon">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">{{config.region.iText}}</span>
+                            </span>
+                        </div>
+                        <select formControlName="region" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.region.errors }">
+                            <option value=""></option>
+                            <option value="India">India</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Algeria">Algeria</option>
+                            <option value="Andorran">Andorran</option>
+                        </select>
+                        <div *ngIf="submitted && f.region.errors" class="invalid-feedback">
+                            <div *ngIf="f.region.errors.required">Region is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-primary mr-1">Register</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        </div>
+    </form>
+</div>
