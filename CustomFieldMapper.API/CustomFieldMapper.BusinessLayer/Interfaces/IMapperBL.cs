@@ -5,6 +5,6 @@ namespace SmartFieldMapper.BusinessLayer.Interfaces
 {
     public interface IMapperBL
     {
-        Task<Form> GetAllData();
+        Task<Document> GetAllData();
     }
 }

@@ -7,13 +7,17 @@ namespace CustomFieldMapper.WebAPI.Controllers
     public class MapperController : ControllerBase
     {
         private readonly IMapperBL _mapperBL;
-        public MapperController(IMapperBL mapperBL)
+        private readonly ITemplateBL _templateBL;
+        public MapperController(IMapperBL mapperBL,ITemplateBL templateBL)
         {
             _mapperBL = mapperBL;
+            _templateBL = templateBL;
         }
-        [Route("GetData")]
-        public ActionResult GetData()
+        [HttpGet]
+        [Route("api/GetData")]
+        public ActionResult GetData(string TemplateId)
         {
+            object template = _templateBL.GetTemplateById(TemplateId);
             return Ok(_mapperBL.GetAllData());
         }
     }

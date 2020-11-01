@@ -15,11 +15,11 @@ namespace SmartFieldMapper.BusinessLayer.Concreate
         {
             _cosmosDBService = cosmosDBService;
         }
-        public async Task<Form> GetAllData()
+        public async Task<Document> GetAllData()
         {
             string query = "Select * from C";
-            dynamic obj = await _cosmosDBService.GetItemsAsync(query);
-            return DynamicToStatic.ToStatic<Form>(obj);
+            dynamic obj = await _cosmosDBService.GetItemsAsync<Document>(query, "hackathonteam", "hackathonteam");
+            return DynamicToStatic.ToStatic<Document>(obj);
         }
     }
 }

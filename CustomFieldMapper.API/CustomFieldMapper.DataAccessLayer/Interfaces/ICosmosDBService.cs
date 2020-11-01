@@ -7,10 +7,10 @@ namespace SmartFieldMapper.DataAccessLayer.Interfaces
 {
     public interface ICosmosDBService
     {
-        Task AddItemAsync(object item);
-        Task DeleteItemAsync(string id);
-        Task<dynamic> GetItemAsync(string id);
-        Task<IEnumerable<dynamic>> GetItemsAsync(string queryString);
-        Task UpdateItemAsync(string id, dynamic item);
+        Task AddItemAsync<T>(T item);
+        Task DeleteItemAsync<T>(string id);
+        Task<T> GetItemAsync<T>(string id);
+        Task<IEnumerable<T>> GetItemsAsync<T>(string queryString, string databaseId, string containerName);
+        Task UpdateItemAsync<T>(string id, T item);
     }
 }

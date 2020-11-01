@@ -2,11 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Siddhesh.Chavan\source\repos\CustomFieldMapper.BusinessLayer\CustomFieldMapper.WebAPI\SmartFieldMapper.WebAPI.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

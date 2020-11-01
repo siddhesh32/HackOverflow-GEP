@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SmartFieldMapper.DataAccessLayer.Concreate;
+using SmartFieldMapper.WebAPI;
 using SmartFieldMapper.WebAPI.Installers;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Threading.Tasks;
 
 namespace CustomFieldMapper.WebAPI
@@ -39,6 +41,23 @@ namespace CustomFieldMapper.WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            // Swagger integration
+            var swaggerOption = new SwaggerOption();
+            Configuration.GetSection(nameof(SwaggerOption)).Bind(swaggerOption);
+
+            //Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger(option =>
+            {
+                option.RouteTemplate = swaggerOption.JsonRoute;
+            });
+
+            app.UseSwaggerUI(option =>
+            {
+                foreach (var uiEndpoint in swaggerOption.SwaggerUIEndpoints)
+                {
+                    option.SwaggerEndpoint(uiEndpoint.Endpoint, uiEndpoint.Description);
+                }
+            });
 
             app.UseEndpoints(endpoints =>
             {

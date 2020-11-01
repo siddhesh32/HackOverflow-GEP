@@ -13,6 +13,10 @@ namespace SmartFieldMapper.WebAPI.Installers
         {
             services.AddSingleton<ICosmosDBService>(Startup.InitializeCosmosClientInstanceAsync(configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
             services.AddTransient<IMapperBL, MapperBL>();
+            services.AddTransient<IDocumentBL, DocumentBL>();
+            services.AddTransient<IEntityConfigurationBL, EntityConfigurationBL>();
+            services.AddTransient<IFieldConfigBL, FieldConfigBL>();
+            services.AddTransient<ITemplateBL, TemplateBL>();
         }
     }
 }
